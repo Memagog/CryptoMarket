@@ -1,14 +1,20 @@
-import './App.scss';
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,  
 } from "react-router-dom";
-import Main from './Main/Main.js';
-import CoinInfo from './CoinInfo/CoinInfo';
+import Main from './Components/Main/Main';
+import CoinInfo from './Components/CoinInfo/CoinInfo'
+import { useDispatch } from "react-redux";
+import { getDataAsync } from "./redux/dataSlice";
 
 export default function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getDataAsync());
+  }, []);
+
   return (
     <Router>        
         <Switch>

@@ -29,8 +29,8 @@ export const getHistoryAsync = createAsyncThunk('getHistory', async id => {
   }
 });
 
-export const mainSlice = createSlice({
-  name: 'main',
+export const dataSlice = createSlice({
+  name: 'data',
   initialState,
   reducers: {
     selectCoin: (state, action) => {
@@ -56,6 +56,6 @@ export const mainSlice = createSlice({
   },
 });
 
-export const { selectCoin } = mainSlice.actions;
+export const { selectCoin } = dataSlice.actions;
 export const mainData = state => state;
-export default mainSlice.reducer;
+export default dataSlice.reducer;

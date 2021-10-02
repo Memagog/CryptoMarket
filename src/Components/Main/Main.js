@@ -35,8 +35,12 @@ export default function Main() {
  
   return (
     <div className="main">
-      <Header />
-      {load?<Loader/>:<TableComponent data = {table} header = {['Rank','Name','Price','Max',<RiArrowUpDownFill />, 'Add']}/>}
+      <div className="container__header">
+        <Header />
+      </div>
+      <div className="container__table">
+        {load?<Loader/>:<TableComponent data = {table} header = {['Rank','Name','Price','Max',<RiArrowUpDownFill />, 'Add']}/>}
+      </div>     
     </div>
   )
 }

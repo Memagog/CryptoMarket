@@ -1,31 +1,49 @@
-import React, { useEffect } from 'react'
-import { Table } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
 import TableItem from './TableItem/TableItem';
+import { useSelector } from 'react-redux';
+import { mainData } from './../../redux/dataSlice';
+import PaginationComponent from './Pagination/Pagination';
 
 export default function TableComponent(props) {
-    
-    useEffect(() => {
+  const main = useSelector(mainData);
+  const [len, setLen] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [perPage, setPerPage] = useState(20);
+  const pageVisited = currentPage * perPage;
+  const pageCount = Math.ceil(len / perPage);
 
-      console.log();
-    
-    }, [props])
+  useEffect(() => {
+    if (main.data.status === 'fin' && main.data.coins !== undefined) {
+      setLen(main.data.coins.length);
+    }
+  }, [main]);
 
-    return (
+  const changePage = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
+  return (
       <div>
-           <Table bordered hover variant="dark">
+           <table className="table table-dark table-hover">
                 <thead >
                     <tr>                   
                      {props.header.map(e =>
-                      <th style = {{ backgroundColor: '#bdbfc1', color: 'black' }}>{e}</th>
+                      <th scope="col" >{e}</th>
                      )}
                     </tr>                    
                 </thead>
                 <tbody>
-                    {props.data.map( e => 
-                      <TableItem item = {e}/>
+                    {props.data.slice(pageVisited, pageVisited + perPage).map( e => 
+                      <TableItem scope="row" item = {e}/>
                     )}                    
                 </tbody>
-            </Table>
+            </table>
+            <PaginationComponent
+              pageVisited={pageVisited}
+              perPage={perPage}
+              pageCount={pageCount}
+              changePage={changePage}
+            />
       </div>
-    )
+  )
 }

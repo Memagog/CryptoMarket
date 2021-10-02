@@ -6,6 +6,7 @@ import Header from './Header/Header';
 import { getDataAsync } from './../../redux/dataSlice';
 import Loader from '../Loader/Loader';
 import { RiArrowUpDownFill } from 'react-icons/ri';
+import './Main.scss';
 
 export default function Main() {  
   const main = useSelector(mainData);
@@ -33,7 +34,7 @@ export default function Main() {
   }, [main])
  
   return (
-    <div>
+    <div className="main">
       <Header />
       {load?<Loader/>:<TableComponent data = {table} header = {['Rank','Name','Price','Max',<RiArrowUpDownFill />, 'Add']}/>}
     </div>

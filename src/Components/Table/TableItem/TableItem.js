@@ -10,7 +10,7 @@ export default function TableItem(props) {
     }
     return (
         <tr>            
-            <td>{props.item.rank}</td>
+            <td >{props.item.rank}</td>
             <td>{props.item.symbol}</td>
             <td>{props.item.priceUsd}</td>
             <td>{props.item.vwap24Hr}</td>

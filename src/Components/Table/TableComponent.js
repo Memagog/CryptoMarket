@@ -13,13 +13,12 @@ export default function TableComponent(props) {
     return (
       <div>
            <Table bordered hover variant="dark">
-                <thead>
-                    <tr>
-                      {Object.keys(props.data[0]).map( e => 
-                        <th style = {{ backgroundColor: 'grey' }}>{e}</th>
-                      )}
-                      <th style = {{ backgroundColor: 'grey' }}>+/-</th>
-                    </tr>
+                <thead >
+                    <tr>                   
+                     {props.header.map(e =>
+                      <th style = {{ backgroundColor: '#bdbfc1', color: 'black' }}>{e}</th>
+                     )}
+                    </tr>                    
                 </thead>
                 <tbody>
                     {props.data.map( e => 

@@ -5,6 +5,7 @@ import TableComponent from '../Table/TableComponent';
 import Header from './Header/Header';
 import { getDataAsync } from './../../redux/dataSlice';
 import Loader from '../Loader/Loader';
+import { RiArrowUpDownFill } from 'react-icons/ri';
 
 export default function Main() {  
   const main = useSelector(mainData);
@@ -24,7 +25,7 @@ export default function Main() {
           rank: e.rank,
           symbol: e.symbol,
           priceUsd: e.priceUsd,
-          vwap24Hr: e.vwap24Hr,     
+          vwap24Hr: e.vwap24Hr,
         })
       )            
       return res
@@ -34,7 +35,7 @@ export default function Main() {
   return (
     <div>
       <Header />
-      {load?<Loader/>:<TableComponent data = {table} />}
+      {load?<Loader/>:<TableComponent data = {table} header = {['Rank','Name','Price','Max',<RiArrowUpDownFill />, 'Add']}/>}
     </div>
   )
 }

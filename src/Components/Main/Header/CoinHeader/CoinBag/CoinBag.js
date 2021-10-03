@@ -1,9 +1,7 @@
 import React from 'react'
-import { RiArrowUpDownFill } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { coinCount, shopCoin } from '../../../../../redux/coinSlice';
-import { FiPlusSquare } from 'react-icons/fi';
 import ModalWindow from '../../../../Modal/Modal';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import CoinBagForm from './Form/CoinBagForm';
@@ -31,16 +29,17 @@ export default function CoinBag() {
 
     const shopCoinBag = () => {
       setShow(false);
+      localStorage.setItem('initialCoinBag', JSON.stringify(coinBag.coin.coins));  
       dispatch(shopCoin(item));
     };
 
     const endChose = e => {
-      if (!isNaN(value - 0) && e.count - 0 + (value - 0) >= 0) {
+      if (!isNaN(value - 0) && (+e.count) + (+value) >= 0) {
         setItem({
           symbol: e.symbol,
-          amount: e.price*((e.count-0) + (value-0)) ,
+          amount: e.price*((+e.count) + (+value)) ,
           changePercent24Hr: e.changePercent24Hr,
-          count: (e.count - 0) + (value - 0),
+          count: (+e.count) + (+value),
           id: e.id,
           name: e.name,
           price: e.price,

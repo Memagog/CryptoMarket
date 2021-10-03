@@ -51,3 +51,59 @@ $text-color: rgb(250, 248, 248);
 .header__coin-bag:hover{
     background-color: rgb(175, 172, 172);
 }
+@media (max-width:500px) {
+        .header{
+            display: flex;
+            flex-direction: column;        
+        }
+        .header__coins_popular-list{       
+            display: flex;      
+            justify-content:center;
+            margin-right: 0px;
+            margin-left: 20px;       
+        }
+        .header__coins_popular-list_coin{
+                border: solid $text-color;
+                box-sizing: border-box;
+                margin-right: 0px;
+                margin-left: 10px;           
+        }
+        .header__coin-bag{
+            margin-top: 20px;      
+            display: flex;
+            flex-direction: column;
+        
+        }
+        .pre-procentage{
+            padding-left: 0px;
+        }
+        .dif-procentage{
+            padding-left: 0px;
+        }
+       
+}
+@media (max-width:768px) {
+    .header{
+        display: flex;
+        flex-direction: column;        
+    }
+    .header__coins_popular-list{       
+        display: flex;      
+        justify-content:center;
+        margin-right: 0px;
+        margin-left: 20px;       
+    }
+    .header__coins_popular-list_coin{
+        border: solid $text-color;
+        box-sizing: border-box;
+        margin-right: 0px;
+        margin-left: 10px;           
+    }
+    .header__coin-bag{
+        margin-top: 20px;      
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+       
+    }
+}

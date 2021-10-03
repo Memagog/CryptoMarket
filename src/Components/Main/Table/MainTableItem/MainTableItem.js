@@ -30,10 +30,10 @@ export default function MainTableItem(props) {
     return (
         <>  
           <tr>                      
-            <td onClick={() => checkCoin(props.item)}>{props.item.rank}</td>
+            <td className='table-index' onClick={() => checkCoin(props.item)}>{props.item.rank}</td>
             <td onClick={() => checkCoin(props.item)}>{props.item.symbol}</td>
             <td onClick={() => checkCoin(props.item)}>{props.item.priceUsd.substring(0,8)}$</td>
-            <td onClick={() => checkCoin(props.item)}>{props.item.vwap24Hr.substring(0,8)}$</td>
+            <td className="table-price" onClick={() => checkCoin(props.item)}>{props.item.vwap24Hr.substring(0,8)}$</td>
             <td onClick={() => checkCoin(props.item)}>{percentRender(props.item.priceUsd, props.item.vwap24Hr)}</td>           
             <td><BsPlusSquare className="button-plus" onClick = {()=>handleShow()}/></td>
           </tr>         

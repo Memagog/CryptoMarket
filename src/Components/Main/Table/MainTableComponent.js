@@ -28,10 +28,10 @@ export default function MainTableComponent(props) {
       <table className="table table-dark table-hover">
         <thead >          
           <tr>            
-            <th scope="col" >Rank</th>
+            <th scope="col" className="table-index">Rank</th>
             <th scope="col" >Name</th>
             <th scope="col" >Price</th>
-            <th scope="col" >Max</th>
+            <th scope="col"  className="table-price">Max</th>
             <th scope="col" ><RiArrowUpDownFill /></th>
             <th scope="col" >Add</th>
           </tr>                    

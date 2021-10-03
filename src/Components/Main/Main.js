@@ -5,7 +5,6 @@ import TableComponent from '../Table/TableComponent';
 import Header from './Header/Header';
 import { getDataAsync } from './../../redux/dataSlice';
 import Loader from '../Loader/Loader';
-import { RiArrowUpDownFill } from 'react-icons/ri';
 import './Main.scss';
 
 export default function Main() {  
@@ -29,7 +28,7 @@ export default function Main() {
           vwap24Hr: e.vwap24Hr,
         })
       )            
-      return res
+      return res;
     }
   }, [main])
  
@@ -39,7 +38,7 @@ export default function Main() {
         <Header />
       </div>
       <div className="container__table">
-        {load?<Loader/>:<TableComponent data = {table} header = {['Rank','Name','Price','Max',<RiArrowUpDownFill />, 'Add']}/>}
+        {load?<Loader/>:<TableComponent data = {table} />}
       </div>     
     </div>
   )

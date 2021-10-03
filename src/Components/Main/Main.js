@@ -7,20 +7,19 @@ import { getDataAsync } from './../../redux/dataSlice';
 import Loader from '../Loader/Loader';
 import './Main.scss';
 
-export default function Main() {  
+export default function Main() {
   const main = useSelector(mainData);
   const dispatch = useDispatch();
-  const [load, setLoad] = useState(true);  
+  const [load, setLoad] = useState(true);
 
   const table = useMemo(() => {
     let res = [];
     if (main.data.coins === undefined) {
-      setLoad(true);     
-      dispatch(getDataAsync());      
-    }
-    else {
+      setLoad(true);
+      dispatch(getDataAsync());
+    } else {
       setLoad(false);
-      main.data.coins.map( e => 
+      main.data.coins.map(e =>
         res.push({
           id: e.id,
           rank: e.rank,
@@ -31,21 +30,21 @@ export default function Main() {
           changePercent24Hr: e.changePercent24Hr,
           marketCapUsd: e.marketCapUsd,
           volumeUsd24Hr: e.volumeUsd24Hr,
-          supply: e.supply
-        })
-      )            
+          supply: e.supply,
+        }),
+      );
       return res;
     }
-  }, [main])
- 
+  }, [main]);
+
   return (
     <div className="main">
       <div className="container__header">
         <Header />
       </div>
       <div className="container__table">
-        {load?<Loader/>:<MainTableComponent data = {table} />}
-      </div>     
+        {load ? <Loader /> : <MainTableComponent data={table} />}
+      </div>
     </div>
-  )
+  );
 }

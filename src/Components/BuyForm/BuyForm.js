@@ -11,13 +11,12 @@ export default function BuyForm(props) {
   const [errorShow, setErrorShow] = useState(false);
   const [count, setCount] = useState(0);
   const [bag, setBag] = useState({});
-  const [flag, setFlag] = useState(false); 
-  
+  const [flag, setFlag] = useState(false);
   const errorView = () => setErrorShow(false);
 
   const addCoinBag = () => {
     setFlag(!flag);
-    if (!isNaN(count - 0) && count > 0) {      
+    if (!isNaN(count - 0) && count > 0) {
       dispatch(addCoin(bag));
     } else {
       setErrorShow(true);
@@ -25,16 +24,16 @@ export default function BuyForm(props) {
     localStorage.setItem('initialCoinBag', JSON.stringify(coin.coin.coins));  
   };
 
-  useEffect(() => {    
+  useEffect(() => {
     setBag({
       id: uuidv4(),
       rank: props.coin.rank,
-      name:  props.coin.name,
+      name: props.coin.name,
       price: (+props.coin.priceUsd).toFixed(2),
-      amount: count * (+props.coin.priceUsd),
+      amount: count * props.coin.priceUsd,
       count: count,
-      symbol:  props.coin.symbol,
-      changePercent24Hr:  props.coin.changePercent24Hr,
+      symbol: props.coin.symbol,
+      changePercent24Hr: props.coin.changePercent24Hr,
     });
   }, [count, flag]);
 
@@ -57,14 +56,14 @@ export default function BuyForm(props) {
         >
           Buy
         </Button>
-      </InputGroup>    
-      <ModalWindow 
-        style = {{backgroundColor: 'red'}} 
-        show = {errorShow} 
-        handleClose = {errorView} 
-        title = {`Error Window`} 
-        body = {`Input Only Numbers`} 
-        size = {'sm'} 
+      </InputGroup>
+      <ModalWindow
+        style={{ backgroundColor: 'red' }}
+        show={errorShow}
+        handleClose={errorView}
+        title={`Error Window`}
+        body={`Input Only Numbers`}
+        size={'sm'}
       />
     </div>
   );

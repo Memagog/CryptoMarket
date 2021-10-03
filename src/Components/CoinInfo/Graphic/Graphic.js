@@ -19,8 +19,8 @@ export default function Graphic() {
     query: '(min-width: 768px)'
   });
   const graphic = useSelector(mainData);
-  const [width, setWidth] = useState(350)
-  const [height, setHeight] = useState(400)
+  const [width, setWidth] = useState(350);
+  const [height, setHeight] = useState(400);
   const [data, setData] = useState([
     {
       priceUsd: '',
@@ -31,16 +31,15 @@ export default function Graphic() {
 
   useEffect(() => {
     if (isDesktopOrLaptop) {
-      setWidth(1000)
-      setHeight(500)
-    }
-    else if(isTablet){
-      setWidth(700)
-      setHeight(500)
+      setWidth(1000);
+      setHeight(500);
+    } else if (isTablet) {
+      setWidth(700);
+      setHeight(500);
     }
   }, [isDesktopOrLaptop]);
 
-  useEffect(() => {   
+  useEffect(() => {
     setData(graphic.data.history);
   }, [graphic]);
 
@@ -58,7 +57,7 @@ export default function Graphic() {
 
   return (
     <>
-      <LineChart  width={width} height={height} data={data}>
+      <LineChart width={width} height={height} data={data}>
         <CartesianGrid strokeDasharray="5 5" />
         <XAxis padding={{ left: 40, right: 40 }} />
         <YAxis type="number" domain={[0, max + max * 0.1]} />
@@ -72,8 +71,7 @@ export default function Graphic() {
           dot={false}
         />
         {/* <Line type="monotone"  stroke="#82ca9d" /> */}
-      </LineChart>       
+      </LineChart>
     </>
-    
   );
 }

@@ -20,9 +20,7 @@ export default function Popular() {
           </div>
         ))
       ) : (
-        <div className="popular-list__coin">
-          Filled do loading data
-        </div>
+        <div className="popular-list__coin">Filled do loading data</div>
       )}
     </div>
   );

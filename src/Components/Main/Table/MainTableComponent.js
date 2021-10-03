@@ -26,20 +26,26 @@ export default function MainTableComponent(props) {
   return (
     <div>
       <table className="table table-dark table-hover">
-        <thead >          
-          <tr>            
-            <th scope="col" className="table-index">Rank</th>
-            <th scope="col" >Name</th>
-            <th scope="col" >Price</th>
-            <th scope="col"  className="table-price">Max</th>
-            <th scope="col" ><RiArrowUpDownFill /></th>
-            <th scope="col" >Add</th>
-          </tr>                    
+        <thead>
+          <tr>
+            <th scope="col" className="table-index">
+              Rank
+            </th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col" className="table-price">
+              Max
+            </th>
+            <th scope="col">
+              <RiArrowUpDownFill />
+            </th>
+            <th scope="col">Add</th>
+          </tr>
         </thead>
         <tbody>
-          {props.data.slice(pageVisited, pageVisited + perPage).map( e => 
-            <MainTableItem scope="row" item = {e}/>
-          )}                    
+          {props.data.slice(pageVisited, pageVisited + perPage).map(e =>
+            <MainTableItem scope="row" item={e} />
+          )}
         </tbody>
       </table>
       <PaginationComponent
@@ -47,7 +53,7 @@ export default function MainTableComponent(props) {
         perPage={perPage}
         pageCount={pageCount}
         changePage={changePage}
-      />     
+      />
     </div>
-  )
+  );
 }

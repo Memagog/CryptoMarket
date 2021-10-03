@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMemo } from 'react';
 import { coinCount } from './../../../../redux/coinSlice';
+import ModalWindow from '../../../Modal/Modal';
+import CoinBag from './CoinBag/CoinBag';
 
 export default function HeaderBag() {
   const [show, setShow] = useState(false);
@@ -27,7 +29,7 @@ export default function HeaderBag() {
 
   const initialDif = useMemo(() => {
     let count = 0;
-    let init = JSON.parse(localStorage.getItem('initialCoinBag'))
+    let init = JSON.parse(localStorage.getItem('initialCoinBag'));
     if (init !== 0 && init !== null && init.length !== 0) {
       init.forEach(e => {
         count += e.amount - 0;
@@ -61,8 +63,9 @@ export default function HeaderBag() {
               <td>({initialDif === 0 ? '0' : initialDif.toFixed(4)}%)</td>
             )}
           </span>
-        </div>
-      </div>      
+        </div>      
+      </div>
+      <ModalWindow show = {show} handleClose = {handleClose} body = {<CoinBag/>} size = {'lg'}/>      
     </div>
   );
 }

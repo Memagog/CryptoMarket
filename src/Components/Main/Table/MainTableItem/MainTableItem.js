@@ -23,7 +23,7 @@ export default function MainTableItem(props) {
             <td>{props.item.priceUsd.substring(0,8)}$</td>
             <td>{props.item.vwap24Hr.substring(0,8)}$</td>
             <td>{percentRender(props.item.priceUsd, props.item.vwap24Hr)}</td>
-            <td><BsPlusSquare onClick = {()=>handleShow()}/></td>
+            <td><BsPlusSquare className="button-plus" onClick = {()=>handleShow()}/></td>
           </tr>         
           <ModalWindow 
             show = {show} 

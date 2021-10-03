@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { mainData } from '../../redux/dataSlice';
-import TableComponent from '../Table/TableComponent';
+import MainTableComponent from '../Table/MainTableComponent';
 import Header from './Header/Header';
 import { getDataAsync } from './../../redux/dataSlice';
 import Loader from '../Loader/Loader';
@@ -38,7 +38,7 @@ export default function Main() {
         <Header />
       </div>
       <div className="container__table">
-        {load?<Loader/>:<TableComponent data = {table} />}
+        {load?<Loader/>:<MainTableComponent data = {table} />}
       </div>     
     </div>
   )

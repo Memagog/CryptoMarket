@@ -5,7 +5,13 @@ import { getHistoryAsync, mainData } from './../../redux/dataSlice';
 import ModalWindow from './../Modal/Modal';
 import { FaBitcoin } from 'react-icons/fa';
 import Graphic from './Graphic/Graphic';
+import './CoinInfo.scss';
+import { Button } from 'react-bootstrap';
+import { useHistory } from 'react-router';
+
+
 export default function CoinInfo() {
+    const history = useHistory();
     const dispatch = useDispatch();
     const data = useSelector(mainData);
     const [errorShow, setErrorShow] = useState(true);
@@ -20,6 +26,7 @@ export default function CoinInfo() {
         volumeUsd24Hr: '',
         vwap24Hr: '',
     });
+
     const errorView = () => {
         try {
             dispatch(getHistoryAsync(coin.id));
@@ -27,6 +34,7 @@ export default function CoinInfo() {
             setErrorShow(false);
         }
     };
+
     useEffect(() => {
       let local = JSON.parse(localStorage.getItem('select-coin'));
       if (local !== null && local !== undefined) {
@@ -37,54 +45,46 @@ export default function CoinInfo() {
         dispatch(getHistoryAsync(data.data.select.id));
       }
     }, []);
+
     useEffect(() => {
         if (!data.data.history) {
             setErrorShow(true);
         }
-    }, []);
-    useEffect(() => {
-        console.log(data)
-    }, [])
+    }, []);   
+
     return (
-        <div>
-            <div className="info-container">
-                <div className="info-container_info">
-                <p>
-                    {/* <FaBitcoin className="info-container_info_icon" /> */}
-                    <span>{coin.id} {coin.name}</span>
-                </p>
-                <p>
-                    <span>Rank: </span> <span>{coin.rank}</span>
-                </p>
-                <p>
-                    <span>Symbol: </span> <span>{coin.symbol}</span>
-                </p>
-                <p>
-                    <span>Capital: </span>
-                    <span>
-                    {(coin.marketCapUsd - 0).toFixed(2)}$
-                    </span>
-                </p>
-                <p>
-                    <span>supply: </span>
-                    <span >
-                    {(coin.supply - 0).toFixed(4)}{' '}
-                    </span>
-                </p>
-                <p>
-                    <span>Volume: </span>
-                    <span>
-                    {(coin.volumeUsd24Hr - 0).toFixed(2)}$
-                    </span>
-                </p>
-                <p>
-                    <span>Max Value: </span>
-                    <span>
-                    {(coin.vwap24Hr - 0).toFixed(2)}$
-                    </span>
-                </p>
-                </div>
-                {data.data.history ? (
+        <div className="coin-info">
+            <div className="coin-info__logo-container">
+                <span>{coin.name}({coin.symbol})#{coin.rank}</span>
+            </div>                    
+            <div className="coin-info__info-list">
+                          
+                    <p>
+                        <span>Capital: </span>
+                        <span>
+                        {(coin.marketCapUsd - 0).toFixed(2)}$
+                        </span>
+                    </p>
+                    <p>
+                        <span>supply: </span>
+                        <span >
+                        {(coin.supply - 0).toFixed(1)}{' '}
+                        </span>
+                    </p>
+                    <p>
+                        <span>Volume: </span>
+                        <span>
+                        {(coin.volumeUsd24Hr - 0).toFixed(2)}$
+                        </span>
+                    </p>
+                    <p>
+                        <span>Max Value: </span>
+                        <span>
+                        {(coin.vwap24Hr - 0).toFixed(2)}$
+                        </span>
+                    </p>                                     
+            </div>
+            {data.data.history ? (
                 <div className="graphic">
                     <Graphic />
                 </div>
@@ -98,8 +98,14 @@ export default function CoinInfo() {
                     />
                     </div>
                 </div>
-                )}
-            </div>
-            </div>
+            )}
+            <Button 
+                variant ='light' 
+                className = "coin-info__button-back" 
+                onClick = {() => {history.push('/')}}
+            >
+                Back
+            </Button>                      
+        </div>
     )
 }

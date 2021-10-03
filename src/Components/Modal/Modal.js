@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react'
 import { Modal } from 'react-bootstrap';
 
-export default function ModalWindow(props) {
-  useEffect(() => {
-    console.log(props.coin)
-  }, [])
+export default function ModalWindow(props) {  
   return (
     <Modal 
       show={props.show} 

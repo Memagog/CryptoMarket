@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MainTableItem from './MainTableItem/MainTableItem';
 import { useSelector } from 'react-redux';
-import { mainData } from '../../redux/dataSlice';
+import { mainData } from '../../../redux/dataSlice';
 import PaginationComponent from './Pagination/Pagination';
 import { RiArrowUpDownFill } from 'react-icons/ri';
 

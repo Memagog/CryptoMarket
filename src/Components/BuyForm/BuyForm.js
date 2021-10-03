@@ -22,7 +22,7 @@ export default function BuyForm(props) {
     } else {
       setErrorShow(true);
     }
-    //console.log(coin) localStorage dif
+    localStorage.setItem('initialCoinBag', JSON.stringify(coin.coin.coins));  
   };
 
   useEffect(() => {    

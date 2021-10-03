@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { mainData } from '../../redux/dataSlice';
-import MainTableComponent from '../Table/MainTableComponent';
+import MainTableComponent from './Table/MainTableComponent';
 import Header from './Header/Header';
 import { getDataAsync } from './../../redux/dataSlice';
 import Loader from '../Loader/Loader';

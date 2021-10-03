@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { BsPlusSquare } from 'react-icons/bs';
-import BuyForm from '../../BuyForm/BuyForm';
-import ModalWindow from '../../Modal/Modal';
+import BuyForm from '../../../BuyForm/BuyForm';
+import ModalWindow from '../../../Modal/Modal';
 
 export default function MainTableItem(props) {
     const [show, setShow] = useState(false); 

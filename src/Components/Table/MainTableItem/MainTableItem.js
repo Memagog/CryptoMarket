@@ -23,9 +23,17 @@ export default function MainTableItem(props) {
             <td>{props.item.priceUsd.substring(0,8)}$</td>
             <td>{props.item.vwap24Hr.substring(0,8)}$</td>
             <td>{percentRender(props.item.priceUsd, props.item.vwap24Hr)}</td>
-            <td><BsPlusSquare onClick = {()=>handleShow(props.item)}/></td>
+            <td><BsPlusSquare onClick = {()=>handleShow()}/></td>
           </tr>         
-          <ModalWindow show = {show} handleClose = {handleClose} title = {'Buy Crypto Coin'} body = {<BuyForm/>} coin={props.item} footer= {`${props.coin.symbol} ${props.coin.priceUsd.substring(0,8)}$`}/>
+          <ModalWindow 
+            show = {show} 
+            handleClose = {handleClose} 
+            title = {'Buy Crypto Coin'} 
+            body = {<BuyForm coin = {props.item}/>} 
+            coin={props.item} 
+            footer= {`${props.item.symbol} ${props.item.priceUsd.substring(0,8)}$`}
+            size={'lg'}
+          />
         </>
       
     )

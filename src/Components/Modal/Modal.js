@@ -6,15 +6,19 @@ export default function ModalWindow(props) {
     console.log(props.coin)
   }, [])
   return (
-    <Modal show={props.show} onHide={props.handleClose} size="lg">
-      <Modal.Header closeButton>
+    <Modal 
+      show={props.show} 
+      onHide={props.handleClose} 
+      size={props.size}      
+    >
+      <Modal.Header closeButton style = {props.style}>
         <Modal.Title>{props.title}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
+      </Modal.Header >
+      <Modal.Body style = {props.style}>
         {props.body}
       </Modal.Body>
-      <Modal.Header>
-        <Modal.Title>{props.footer}</Modal.Title>
+      <Modal.Header style = {props.style}>
+        <Modal.Title >{props.footer}</Modal.Title>
       </Modal.Header>
     </Modal>
   )

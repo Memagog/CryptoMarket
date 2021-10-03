@@ -23,9 +23,11 @@ export default function Main() {
       main.data.coins.map( e => 
         res.push({
           rank: e.rank,
+          name: e.name,
           symbol: e.symbol,
           priceUsd: e.priceUsd,
           vwap24Hr: e.vwap24Hr,
+          changePercent24Hr: e.changePercent24Hr,
         })
       )            
       return res;

@@ -1,44 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { InputGroup, FormControl, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
-
+import { addCoin, coinCount } from '../../redux/coinSlice';
+import ModalWindow from '../Modal/Modal';
 export default function BuyForm(props) {
   const dispatch = useDispatch();
+  const coin = useSelector(coinCount);
   const [errorShow, setErrorShow] = useState(false);
   const [count, setCount] = useState(0);
   const [bag, setBag] = useState({});
-  const [flag, setFlag] = useState(false);
-  const num = props.priceUsd - 0;
-
-  const errorView = () => {
-    setErrorShow(false);
-  };
+  const [flag, setFlag] = useState(false); 
+  
+  const errorView = () => setErrorShow(false);
 
   const addCoinBag = () => {
     setFlag(!flag);
-    if (!isNaN(count - 0) && count > 0) {
-      if (props.init === 'buy') {
-        // dispatch(addCoin(bag));
-      } else {
-        // dispatch(createBag(bag));
-      }
+    if (!isNaN(count - 0) && count > 0) {      
+      dispatch(addCoin(bag));
     } else {
       setErrorShow(true);
     }
+    //console.log(coin) localStorage dif
   };
 
-  useEffect(() => {
+  useEffect(() => {    
     setBag({
       id: uuidv4(),
-      rank: props.rank,
-      name: props.name,
-      price: num.toFixed(2),
-      amount: count * num,
+      rank: props.coin.rank,
+      name:  props.coin.name,
+      price: (+props.coin.priceUsd).toFixed(2),
+      amount: count * (+props.coin.priceUsd),
       count: count,
-      symbol: props.symbol,
-      changePercent24Hr: props.changePercent,
+      symbol:  props.coin.symbol,
+      changePercent24Hr:  props.coin.changePercent24Hr,
     });
   }, [count, flag]);
 
@@ -61,12 +57,15 @@ export default function BuyForm(props) {
         >
           Buy
         </Button>
-      </InputGroup>
-      {/* <ErrorWindow
-        errorShow={errorShow}
-        errorView={errorView}
-        errorText={`Input only Numbers: (1.2) or (1)`}
-      /> */}
+      </InputGroup>    
+      <ModalWindow 
+        style = {{backgroundColor: 'red'}} 
+        show = {errorShow} 
+        handleClose = {errorView} 
+        title = {`Error Window`} 
+        body = {`Input Only Numbers`} 
+        size = {'sm'} 
+      />
     </div>
   );
 }

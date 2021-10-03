@@ -22,12 +22,16 @@ export default function Main() {
       setLoad(false);
       main.data.coins.map( e => 
         res.push({
+          id: e.id,
           rank: e.rank,
           name: e.name,
           symbol: e.symbol,
           priceUsd: e.priceUsd,
           vwap24Hr: e.vwap24Hr,
           changePercent24Hr: e.changePercent24Hr,
+          marketCapUsd: e.marketCapUsd,
+          volumeUsd24Hr: e.volumeUsd24Hr,
+          supply: e.supply
         })
       )            
       return res;
